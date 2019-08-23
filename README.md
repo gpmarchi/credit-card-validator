@@ -16,16 +16,16 @@ Credit card numbers are logically composed as demonstrated below:
 >
 > by **Kelvin Zhang**
 
-[1]:https://medium.com/hootsuite-engineering/a-comprehensive-guide-to-validating-and-formatting-credit-cards-b9fa63ec7863
+[1]:https://medium.com/hootsuite-engineering/a-comprehensive-guide-to-validating-and-formatting-credit-cards-b9fa63ec7863?target="_blank"
 
 This project goes a little bit further and scrapes information from
-[_Wikipedia_](https://en.wikipedia.org/wiki/Payment_card_number#Issuer_identification_number_(IIN))
+[_Wikipedia_](https://en.wikipedia.org/wiki/Payment_card_number#Issuer_identification_number_(IIN)?target="_blank")
 about the Issuer Identification Number (IIN), and feeds it to the validator
 using JSON.
 
 This enables the validator to be always up to date with current valid IIN ranges
 from active issuing companies, as well as their card number lengths.
 
-So in this way, it is possible for the library to correctly identify the issuer of the card and also display other relevant information regarding the card being validated.
+Therefore, it is possible for the library to correctly identify the issuer of the card and also display other relevant information regarding the card being validated.
 
-Card numbers are validated using the [_Luhn algorithm_](https://en.wikipedia.org/wiki/Luhn_algorithm#Implementation_examples).
+Card numbers are validated using the [_Luhn algorithm_](https://en.wikipedia.org/wiki/Luhn_algorithm#Implementation_examples?target="_blank").
