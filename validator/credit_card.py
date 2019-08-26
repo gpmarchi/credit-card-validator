@@ -10,10 +10,10 @@ class CreditCard:
         return self.__card_number[0]
 
     def get_issuer_identification_number(self):
-        return self.__card_number[0:5]
+        return self.__card_number[0:6]
 
     def get_account_number(self):
-        return self.__card_number[6:-2]
+        return self.__card_number[6:-1]
 
     def get_checksum(self):
         return self.__card_number[-1]
