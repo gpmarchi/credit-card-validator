@@ -18,10 +18,13 @@ Credit card numbers are logically composed as demonstrated below:
 
 [1]:https://medium.com/hootsuite-engineering/a-comprehensive-guide-to-validating-and-formatting-credit-cards-b9fa63ec7863
 
-1. Major Industry Identifier - MII
-2. Issuer Identification Number - IIN
-3. Account Number
-4. Checksum
+**1.** Major Industry Identifier (MII)
+
+**2.** Issuer Identification Number (IIN)
+
+**3.** Account Number
+
+**4.** Checksum
 
 This project goes a little bit further and scrapes information from
 [_Wikipedia_](https://en.wikipedia.org/wiki/Payment_card_number#Issuer_identification_number_(IIN))
