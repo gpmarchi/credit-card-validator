@@ -18,6 +18,22 @@ class IssuingNetwork:
             "Validation: " + (self.__validation or "no validation") + "\n"
         )
 
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            if (
+                self.__issuing_network == other.__issuing_network
+                and self.__iin_ranges == other.__iin_ranges
+                and self.__is_active == other.__is_active
+                and self.__card_length == other.__card_length
+                and self.__validation == other.__validation
+            ):
+                return True
+
+        return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     def get_issuing_network(self):
         return self.__issuing_network
 

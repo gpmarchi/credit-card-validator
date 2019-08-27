@@ -75,3 +75,30 @@ class TestCreditCardValidator(unittest.TestCase):
         self.assertEqual(
             "JCB", CreditCardValidator().get_card_issuer(self.__JCB_TEST_CARD_1)
         )
+
+    def test_get_issuer_category(self):
+        self.assertRaises(
+            exceptions.InvalidCreditCardError,
+            CreditCardValidator().get_issuer_category,
+            self.__VISA_TEST_CARD_5,
+        )
+        self.assertEqual(
+            "Banking and financial",
+            CreditCardValidator().get_issuer_category(self.__VISA_TEST_CARD_1),
+        )
+        self.assertEqual(
+            "Travel and entertainment",
+            CreditCardValidator().get_issuer_category(self.__AMEX_TEST_CARD_1),
+        )
+        self.assertEqual(
+            "Banking and financial",
+            CreditCardValidator().get_issuer_category(self.__MASTER_TEST_CARD_1),
+        )
+        self.assertEqual(
+            "Merchandising and banking/financial",
+            CreditCardValidator().get_issuer_category(self.__DISCOVER_TEST_CARD_1),
+        )
+        self.assertEqual(
+            "Travel and entertainment",
+            CreditCardValidator().get_issuer_category(self.__JCB_TEST_CARD_1),
+        )
