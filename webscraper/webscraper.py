@@ -35,11 +35,11 @@ class WebScraper:
         iin_data_frame = pandas.read_html(str(general_iin_table))[0]
 
         # regex for removing cross references and any notes inside parentheses
-        iin_data_frame.replace("\[\d+\]|\(([^()]+)\)", "", inplace=True, regex=True)
+        iin_data_frame.replace(r"\[\d+\]|\(([^()]+)\)", "", inplace=True, regex=True)
         # regex for removing unicode character '–' and replacing with '-'
-        iin_data_frame.replace("–| - ", "-", inplace=True, regex=True)
+        iin_data_frame.replace(r"–| - ", "-", inplace=True, regex=True)
         # regex for removing any numbers from 'Active' column
-        iin_data_frame.replace({"Active": {" *[\d]": ""}}, inplace=True, regex=True)
+        iin_data_frame.replace({"Active": {r" *[\d]": ""}}, inplace=True, regex=True)
 
         self.__iin_json_object = iin_data_frame.to_json(orient="records")
 
