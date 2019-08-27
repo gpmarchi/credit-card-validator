@@ -1,4 +1,5 @@
 from validator.issuing_network import IssuingNetwork
+from validator.industry_identifier import IndustryIdentifier
 
 
 def is_valid_number_in_string(number):
@@ -17,6 +18,12 @@ def issuing_network_json_object_decoder(json_object):
         json_object["Active"],
         json_object["Length"],
         json_object["Validation"],
+    )
+
+
+def industry_identifier_json_object_decoder(json_object):
+    return IndustryIdentifier(
+        json_object["MII digit value"], json_object["Issuer category"]
     )
 
 

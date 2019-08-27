@@ -7,7 +7,10 @@ class CreditCardValidator:
     def __init__(self):
         self.__webscraper = WebScraper()
         self.__webscraper.fetch_iin_table_into_json_object()
-        self.__issuing_networks = self.__webscraper.get_list_of_issuing_networks()
+        self.__issuing_networks = self.__webscraper.get_issuing_networks()
+
+        self.__webscraper.fetch_mii_table_into_json_object()
+        self.__industry_identifiers = self.__webscraper.get_industry_identifiers()
 
     def is_card_valid(self, credit_card):
 
@@ -37,17 +40,16 @@ class CreditCardValidator:
         card_issuer_id_number = credit_card.get_issuer_identification_number()
 
         for issuing_network in self.__issuing_networks:
-
             iin_ranges = issuing_network.get_iin_ranges()
 
             for iin_range in iin_ranges:
 
                 if "-" in iin_range:
-
                     iin_range_limits = commons.get_trimmed_split_strings(iin_range, "-")
                     iin_range_inferior_limit = iin_range_limits[0]
                     iin_range_superior_limit = iin_range_limits[1]
-                    iin_range_limit_length = len(iin_range_limits[0])
+                    # get length of any limit since they are the same
+                    iin_range_limit_length = len(iin_range_inferior_limit)
 
                     if (
                         int(iin_range_inferior_limit)
@@ -57,11 +59,17 @@ class CreditCardValidator:
                         return issuing_network.get_issuing_network()
 
                 elif iin_range in card_issuer_id_number[0 : len(iin_range)]:
-
                     return issuing_network.get_issuing_network()
 
-    def get_industry_type(self, credit_card):
-        pass
+    def get_issuer_category(self, credit_card):
+        if not self.is_card_valid(credit_card):
+            raise exceptions.InvalidCreditCardError(
+                "Unable to extract industry type. Invalid card number informed."
+            )
 
-    def get_account_number(self, credit_card):
-        pass
+        card_major_id_number = credit_card.get_major_industry_identifier()
+
+        for industry_identifier in self.__industry_identifiers:
+            industry_id_digit = industry_identifier.get_industry_identifier_digit()
+            if industry_id_digit == int(card_major_id_number):
+                return industry_identifier.get_issuer_category()
