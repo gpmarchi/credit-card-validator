@@ -43,7 +43,7 @@ class CreditCardValidator:
             iin_ranges = issuing_network.get_iin_ranges()
             for iin_range in iin_ranges:
                 if self.__is_card_issuer_in_iin_range(card_issuer_id_number, iin_range):
-                    return issuing_network.get_issuing_network()
+                    return issuing_network.get_name()
 
     def __is_card_issuer_in_iin_range(self, card_issuer_id_number, iin_range):
         if commons.is_composite_range(iin_range):
