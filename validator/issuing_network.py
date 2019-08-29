@@ -5,7 +5,7 @@ class IssuingNetwork:
     def __init__(self, issuing_network, iin_ranges, is_active, card_length, validation):
         self.__issuing_network = issuing_network
         self.__iin_ranges = commons.get_trimmed_split_strings(iin_ranges, ",")
-        self.__is_active = commons.get_boolean_from_string(is_active)
+        self.__is_active = commons.are_strings_equal(is_active, "yes")
         self.__card_length = card_length
         self.__validation = validation
 
