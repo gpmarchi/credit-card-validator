@@ -47,7 +47,9 @@ class CreditCardValidator:
 
     def __is_card_issuer_in_iin_range(self, card_issuer_id_number, iin_range):
         if commons.is_composite_range(iin_range):
-            return self.__is_card_issuer_in_composite_iin_range()
+            return self.__is_card_issuer_in_composite_iin_range(
+                card_issuer_id_number, iin_range
+            )
         return card_issuer_id_number[0 : len(iin_range)] in iin_range
 
     def __is_card_issuer_in_composite_iin_range(self, card_issuer_id_number, iin_range):
