@@ -39,5 +39,5 @@ def are_strings_equal(string1, string2):
     return string1.lower() == string2.lower()
 
 
-def is_composite_range(char, range):
-    return char in range
+def is_composite_range(iin_range):
+    return "-" in iin_range
