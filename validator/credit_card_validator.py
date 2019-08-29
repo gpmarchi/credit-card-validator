@@ -41,25 +41,23 @@ class CreditCardValidator:
 
         for issuing_network in self.__issuing_networks:
             iin_ranges = issuing_network.get_iin_ranges()
-
             for iin_range in iin_ranges:
-
-                if "-" in iin_range:
-                    iin_range_limits = commons.get_trimmed_split_strings(iin_range, "-")
-                    iin_range_inferior_limit = iin_range_limits[0]
-                    iin_range_superior_limit = iin_range_limits[1]
-                    # get length of any limit since they are the same
-                    iin_range_limit_length = len(iin_range_inferior_limit)
-
-                    if (
-                        int(iin_range_inferior_limit)
-                        <= int(card_issuer_id_number[0:iin_range_limit_length])
-                        <= int(iin_range_superior_limit)
-                    ):
-                        return issuing_network.get_issuing_network()
-
-                elif iin_range in card_issuer_id_number[0 : len(iin_range)]:
+                if self.__is_card_issuer_in_iin_range(card_issuer_id_number, iin_range):
                     return issuing_network.get_issuing_network()
+
+    def __is_card_issuer_in_iin_range(self, card_issuer_id_number, iin_range):
+        if commons.is_composite_range("-", iin_range):
+            iin_range_limits = commons.get_trimmed_split_strings(iin_range, "-")
+            iin_range_inferior_limit = iin_range_limits[0]
+            iin_range_superior_limit = iin_range_limits[1]
+            # get length of any limit since they are the same
+            iin_range_limit_length = len(iin_range_inferior_limit)
+            return (
+                int(iin_range_inferior_limit)
+                <= int(card_issuer_id_number[0:iin_range_limit_length])
+                <= int(iin_range_superior_limit)
+            )
+        return card_issuer_id_number[0 : len(iin_range)] in iin_range
 
     def get_issuer_category(self, credit_card):
         if not self.is_card_valid(credit_card):

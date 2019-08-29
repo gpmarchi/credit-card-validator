@@ -35,5 +35,9 @@ def get_trimmed_split_strings(string_to_split, delimiter):
     return trimmed_split_strings
 
 
-def get_boolean_from_string(string):
-    return string.lower() == "yes"
+def are_strings_equal(string1, string2):
+    return string1.lower() == string2.lower()
+
+
+def is_composite_range(char, range):
+    return char in range
