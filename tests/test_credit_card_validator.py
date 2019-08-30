@@ -37,68 +37,69 @@ class TestCreditCardValidator(unittest.TestCase):
     __JCB_TEST_CARD_4 = CreditCard("3569114675641340")
     __JCB_TEST_CARD_5 = CreditCard("3548805774982008")
 
-    def test_is_card_valid(self):
-        self.assertTrue(CreditCardValidator().is_card_valid(self.__VISA_TEST_CARD_1))
-        self.assertTrue(CreditCardValidator().is_card_valid(self.__VISA_TEST_CARD_2))
-        self.assertTrue(CreditCardValidator().is_card_valid(self.__VISA_TEST_CARD_3))
-        self.assertTrue(CreditCardValidator().is_card_valid(self.__VISA_TEST_CARD_4))
-        self.assertFalse(CreditCardValidator().is_card_valid(self.__VISA_TEST_CARD_5))
+    __VALIDATOR = CreditCardValidator()
 
-        self.assertTrue(CreditCardValidator().is_card_valid(self.__AMEX_TEST_CARD_1))
-        self.assertTrue(CreditCardValidator().is_card_valid(self.__AMEX_TEST_CARD_2))
-        self.assertTrue(CreditCardValidator().is_card_valid(self.__AMEX_TEST_CARD_3))
-        self.assertTrue(CreditCardValidator().is_card_valid(self.__AMEX_TEST_CARD_4))
-        self.assertFalse(CreditCardValidator().is_card_valid(self.__AMEX_TEST_CARD_5))
+    def test_is_card_valid(self):
+        self.assertTrue(self.__VALIDATOR.is_card_valid(self.__VISA_TEST_CARD_1))
+        self.assertTrue(self.__VALIDATOR.is_card_valid(self.__VISA_TEST_CARD_2))
+        self.assertTrue(self.__VALIDATOR.is_card_valid(self.__VISA_TEST_CARD_3))
+        self.assertTrue(self.__VALIDATOR.is_card_valid(self.__VISA_TEST_CARD_4))
+        self.assertFalse(self.__VALIDATOR.is_card_valid(self.__VISA_TEST_CARD_5))
+
+        self.assertTrue(self.__VALIDATOR.is_card_valid(self.__AMEX_TEST_CARD_1))
+        self.assertTrue(self.__VALIDATOR.is_card_valid(self.__AMEX_TEST_CARD_2))
+        self.assertTrue(self.__VALIDATOR.is_card_valid(self.__AMEX_TEST_CARD_3))
+        self.assertTrue(self.__VALIDATOR.is_card_valid(self.__AMEX_TEST_CARD_4))
+        self.assertFalse(self.__VALIDATOR.is_card_valid(self.__AMEX_TEST_CARD_5))
 
     def test_get_card_issuer(self):
         self.assertRaises(
             exceptions.InvalidCreditCardError,
-            CreditCardValidator().get_card_issuer,
+            self.__VALIDATOR.get_card_issuer,
             self.__VISA_TEST_CARD_5,
         )
 
         self.assertEqual(
-            "Visa", CreditCardValidator().get_card_issuer(self.__VISA_TEST_CARD_1)
+            "Visa", self.__VALIDATOR.get_card_issuer(self.__VISA_TEST_CARD_1)
         )
         self.assertEqual(
             "American Express",
-            CreditCardValidator().get_card_issuer(self.__AMEX_TEST_CARD_1),
+            self.__VALIDATOR.get_card_issuer(self.__AMEX_TEST_CARD_1),
         )
         self.assertEqual(
-            "Mastercard",
-            CreditCardValidator().get_card_issuer(self.__MASTER_TEST_CARD_1),
+            "Mastercard", self.__VALIDATOR.get_card_issuer(self.__MASTER_TEST_CARD_1)
         )
         self.assertEqual(
             "Discover Card",
-            CreditCardValidator().get_card_issuer(self.__DISCOVER_TEST_CARD_1),
+            self.__VALIDATOR.get_card_issuer(self.__DISCOVER_TEST_CARD_1),
         )
         self.assertEqual(
-            "JCB", CreditCardValidator().get_card_issuer(self.__JCB_TEST_CARD_1)
+            "JCB", self.__VALIDATOR.get_card_issuer(self.__JCB_TEST_CARD_1)
         )
 
     def test_get_issuer_category(self):
         self.assertRaises(
             exceptions.InvalidCreditCardError,
-            CreditCardValidator().get_issuer_category,
+            self.__VALIDATOR.get_issuer_category,
             self.__VISA_TEST_CARD_5,
         )
         self.assertEqual(
             "Banking and financial",
-            CreditCardValidator().get_issuer_category(self.__VISA_TEST_CARD_1),
+            self.__VALIDATOR.get_issuer_category(self.__VISA_TEST_CARD_1),
         )
         self.assertEqual(
             "Travel and entertainment",
-            CreditCardValidator().get_issuer_category(self.__AMEX_TEST_CARD_1),
+            self.__VALIDATOR.get_issuer_category(self.__AMEX_TEST_CARD_1),
         )
         self.assertEqual(
             "Banking and financial",
-            CreditCardValidator().get_issuer_category(self.__MASTER_TEST_CARD_1),
+            self.__VALIDATOR.get_issuer_category(self.__MASTER_TEST_CARD_1),
         )
         self.assertEqual(
             "Merchandising and banking/financial",
-            CreditCardValidator().get_issuer_category(self.__DISCOVER_TEST_CARD_1),
+            self.__VALIDATOR.get_issuer_category(self.__DISCOVER_TEST_CARD_1),
         )
         self.assertEqual(
             "Travel and entertainment",
-            CreditCardValidator().get_issuer_category(self.__JCB_TEST_CARD_1),
+            self.__VALIDATOR.get_issuer_category(self.__JCB_TEST_CARD_1),
         )
