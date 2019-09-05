@@ -1,19 +1,19 @@
 # Credit Card Validator
 
+![GitHub issues](https://img.shields.io/github/issues-raw/gpmarchi/credit-card-validator)
+![GitHub last commit](https://img.shields.io/github/last-commit/gpmarchi/credit-card-validator)
+![GitHub](https://img.shields.io/github/license/gpmarchi/credit-card-validator)
+
 ## Table of Contents
 
 - [About the project](#about-the-project)
 - [Reference](#reference)
 - [Usage](#usage)
 
-![GitHub issues](https://img.shields.io/github/issues-raw/gpmarchi/credit-card-validator)
-![GitHub last commit](https://img.shields.io/github/last-commit/gpmarchi/credit-card-validator)
-![GitHub](https://img.shields.io/github/license/gpmarchi/credit-card-validator)
-
 ## About the Project
 
-This project was made in Python as a means for me to learn a bit more about the language.
-The idea initially was to make a simple credit card validator library to be published in [PyPi](https://pypi.org/). Then I decided to add some webscrapping capabilities to the library, so all the data for validating the cards and telling from which company and market sector it was emitted are comming from Wikipedia.
+This project was developed in Python as a means for me to learn a bit more about the language.
+The idea initially was to make a simple credit card validator library to be published in [PyPi](https://pypi.org/). Then I decided to add some webscrapping capabilities to the library, so all the data for validating the cards and telling from which company and market sector they were emitted are comming from Wikipedia.
 
 This library is still an evolving personal project as I'm planning on adding some more features to it. There's the issue of it needing a fallback in case something goes wrong with the Wikipedia scrape, and also making it available via a REST API using Django. After those previous ideas are done, I'll probably develop an webapp made with React to make the validator available on the web.
 
@@ -23,7 +23,7 @@ Credit card numbers are logically composed as demonstrated below:
 
 [example-card]: https://miro.medium.com/max/460/0*2sYEHfIj5UHkF3CI
 
-![alt text][example-card]
+![Card number subdivisions][example-card]
 
 > Image extracted from article: [_A Comprehensive Guide to Validating and Formatting Credit Cards_][1]
 >
